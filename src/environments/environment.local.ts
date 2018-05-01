@@ -2,11 +2,11 @@ export const CONF_LOCAL = {
   production: false,
   environment: 'LOCAL',
   firebase: {
-    apiKey: "AIzaSyC5IyyAgjY4Ruqn_RecBiWlA-QcDjWiEEc",
-    authDomain: "wadt-asgn-3.firebaseapp.com",
-    databaseURL: "https://wadt-asgn-3.firebaseio.com",
-    projectId: "wadt-asgn-3",
-    storageBucket: "wadt-asgn-3.appspot.com",
-    messagingSenderId: "499925191509"
+    apiKey: "AIzaSyA3EgZVqDcIUwkpWUWUYx1OHGeHHTgGqCI",
+    authDomain: "wadt3-f2f6d.firebaseapp.com",
+    databaseURL: "https://wadt3-f2f6d.firebaseio.com",
+    projectId: "wadt3-f2f6d",
+    storageBucket: "",
+    messagingSenderId: "696838901621"
   }
 };

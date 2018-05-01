@@ -14,6 +14,8 @@ import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 })
 export class GroupsComponent implements OnInit {
   groups$: Observable<Group[]>;
+    
+  readonly path = "groups";
 
   groupForm: FormGroup;
 
@@ -44,7 +46,7 @@ export class GroupsComponent implements OnInit {
       id: new FormControl("")
     });
 
-    this.groups$ = this.groupService.getCollection$(ref =>
+    this.groups$ = this.groupService.getCollection$(this.path, ref =>
       ref.orderBy("name", "asc")
     );
 
@@ -59,7 +61,7 @@ export class GroupsComponent implements OnInit {
     const gc = this.groupForm.get("gc").value;
     const gl = this.groupForm.get("gl").value;
     // sending off to service to save
-    this.groupService.add({ name, quantity, gc, gl });
+    this.groupService.add(this.path, { name, quantity, gc, gl });
     this.addedGroupMessage(); // Show confirmation
     this.groupForm.reset(); // clears form
   }
@@ -75,13 +77,13 @@ export class GroupsComponent implements OnInit {
 
     const group: Partial<Group> = { name, quantity, gc, gl, updated };
     // sending off to service to update, needs id and other data
-    this.groupService.update(id, group);
+    this.groupService.update(this.path, id, group);
     this.groupForm.reset(); // clears form
   }
 
   // Delete Group
   remove(id: string) {
-    this.groupService.remove(id);
+    this.groupService.remove(this.path, id);
     this.modalRef.hide();
     this.removedGroupMessage();
   }

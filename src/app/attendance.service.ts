@@ -9,27 +9,27 @@ import DocumentReference = firebase.firestore.DocumentReference;
 
 @Injectable()
 export class AttendanceService {
-  readonly path = "groups";
+  //readonly path = "groups";
 
   constructor(private afs: AngularFirestore) {}
 
-  add(data: Group): Promise<DocumentReference> {
+  add(path: string, data: Group): Promise<DocumentReference> {
     return this.afs
-      .collection<Group>(this.path)
+      .collection<Group>(path)
       .add({ ...data, created: new Date() });
   }
 
-  remove(id: string): Promise<void> {
-    return this.afs.doc<Group>(`${this.path}/${id}`).delete();
+  remove(path: string, id: string): Promise<void> {
+    return this.afs.doc<Group>(`${path}/${id}`).delete();
   }
 
-  update(id: string, data: Partial<Group>): Promise<void> {
-    return this.afs.doc<Group>(`${this.path}/${id}`).update(data);
+  update(path: string, id: string, data: Partial<Group>): Promise<void> {
+    return this.afs.doc<Group>(`${path}/${id}`).update(data);
   }
 
-  getCollection$(ref?: QueryFn): Observable<Group[]> {
+  getCollection$(path: string, ref?: QueryFn): Observable<Group[]> {
     return this.afs
-      .collection<Group>(this.path, ref)
+      .collection<Group>(path, ref)
       .snapshotChanges()
       .map(actions => {
         return actions.map(a => {

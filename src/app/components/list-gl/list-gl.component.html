@@ -6,83 +6,26 @@
     <li class="active">List of GL - AGL</li>
   </ol>
   <div class="row">
-    <div class="col-lg-3">
-  
+      
+    <div class="col-lg-3" *ngFor="let group of groups$ | async">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">WBD02</h3>
+          <h3 class="panel-title">{{ group.name }}</h3>
         </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
-              <avatar [name]="'MUHAMAD SYAHMIL IZWAN BIN HAJI JULANI'" [displayType]="'circle'"></avatar>
+              <avatar [name]="group.gl" [displayType]="'circle'"></avatar>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12" style="padding-top: 10px">
-              MUHAMAD SYAHMIL IZWAN BIN HAJI JULANI
+              {{group.gl}}
             </div>
           </div>
         </div>
       </div>
-  
-    </div>
-    <div class="col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">NWS04</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-              <avatar [name]="'KHAIRUNNISA BINTI HAJI ZULKIFLI'" [displayType]="'circle'"></avatar>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12" style="padding-top: 10px">
-              KHAIRUNNISA BINTI HAJI ZULKIFLI
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">NWS05</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-              <avatar [name]="'MUHAMMAD NURSHAZWAN BIN HAJI NOORSHARI'" [displayType]="'circle'"></avatar>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12" style="padding-top: 10px">
-              MUHAMMAD NURSHAZWAN BIN HAJI NOORSHARI
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">INS02</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-              <avatar [name]="'SITI RAIHANA BINTI MOKSIN'" [displayType]="'circle'"></avatar>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12" style="padding-top: 10px">
-              SITI RAIHANA BINTI MOKSIN
-            </div>
-          </div>
-        </div>
-      </div>
+        
     </div>
   </div>
 </div>
