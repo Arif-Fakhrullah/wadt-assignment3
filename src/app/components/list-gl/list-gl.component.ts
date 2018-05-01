@@ -10,9 +10,7 @@ import { AttendanceService } from '../../attendance.service';
 })
 export class ListGlComponent implements OnInit {
     groups$: Observable<Group[]>;
-    //"groups" dari firebase
     readonly path = "groups";
-    
     constructor(
         private groupService: AttendanceService
     ) {}

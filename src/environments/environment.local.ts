@@ -6,7 +6,7 @@ export const CONF_LOCAL = {
     authDomain: "wadt3-f2f6d.firebaseapp.com",
     databaseURL: "https://wadt3-f2f6d.firebaseio.com",
     projectId: "wadt3-f2f6d",
-    storageBucket: "",
+    storageBucket: "wadt3-f2f6d.appspot.com",
     messagingSenderId: "696838901621"
   }
 };
