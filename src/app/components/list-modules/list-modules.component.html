@@ -5,61 +5,66 @@
     </li>
     <li class="active">List of Modules</li>
   </ol>
+    <div class="row">
+    <div class="col-lg-6 col-md-offset-3">
+
+      <form [formGroup]="groupForm" class="form-horizontal">
+        <div class="form-group">
+          <legend>{{updating ? 'Updating Group' : 'Add Module'}}</legend>
+        </div>
+        <div class="form-group">
+          <label for="inputGroupName" class="col-sm-2 control-label">Module Name</label>
+          <div class="col-sm-2">
+            <input type="text" name="" id="inputGroupName" class="form-control" required="required" formControlName="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputGlName" class="col-sm-2 control-label">Module Lecturer</label>
+          <div class="col-sm-6">
+            <input type="text" name="" id="inputGlName" class="form-control" required="required" formControlName="ml">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="hidden" formControlName="id">
+            <button type="submit" class="btn btn-primary" [disabled]="groupForm.invalid" (click)="updating ? updateGroup() : save()">{{updating ? 'Update' : 'Save'}}</button>
+            <button class="btn btn-warning" [disabled]="!groupForm.dirty && !groupForm.pristine" (click)="reset()">Clear</button>
+            
+            <button type="button" class="btn btn-info" (click)="updating=updating ? false : true">Toggle Action</button>
+            
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
   <div class="row">
-    <div class="col-lg-12">
-      <div class="well clearfix">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">WBD02</h3>
-              </div>
-              <div class="panel-body">
-                Group Leader - MUHAMAD SYAHMIL IZWAN BIN HAJI JULANI
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">NWS04</h3>
-              </div>
-              <div class="panel-body">
-                Group Leader - MUHAMMAD MUQRI BIN SUFRI
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">NWS05</h3>
-              </div>
-              <div class="panel-body">
-                Group Leader - SITI RAIHANA BINTI MOKSIN
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">INS02</h3>
-              </div>
-              <div class="panel-body">
-                Group Leader - MUHAMMAD AZIZI BIN KEFFLI
-              </div>
-            </div>
+    <div class="col-lg-4" *ngFor="let module of modules$ | async">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ module.name }}</h3>
+        </div>
+        <div class="panel-body">
+          Module Lecturer: {{module.ml}}
+        </div>
+        <div class="panel-footer clearfix">
+          <div class="pull-right">
+            <button type="button" class="btn btn-danger btn-sm" (click)="openModal(template)">
+              <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete
+            </button>
+            <button type="button" class="btn btn-info btn-sm" (click)="fill(group)">
+              <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Update
+            </button>
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">LIC02</h3>
-            </div>
-            <div class="panel-body">
-              Group Leader - KHAIRUNNISA BINTI HAJI ZULKIFLI
-            </div>
+        <!-- Modal overlay -->
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <p>Do you want to confirm?</p>
+            <button type="button" class="btn btn-default" (click)="remove(module.id)">Yes</button>
+            <button type="button" class="btn btn-primary" (click)="decline()">No</button>
           </div>
-        </div>
+        </ng-template>
       </div>
     </div>
   </div>
