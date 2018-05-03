@@ -37,7 +37,7 @@ export class ListModulesComponent implements OnInit {
   ngOnInit() {
     // Form validation, Submit button will only work if all valid
     this.groupForm = new FormGroup({
-      name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+      name: new FormControl("", [Validators.required, Validators.minLength(5)]),
       ml: new FormControl("", Validators.required),
       //id: new FormControl("")
     });
@@ -65,6 +65,7 @@ export class ListModulesComponent implements OnInit {
     const id = this.groupForm.get("id").value;
     const name = this.groupForm.get("name").value;
     const ml = this.groupForm.get("ml").value;
+    const updated =  new Date();
 
     const model: Partial<Module> = { name, ml };
     // sending off to service to update, needs id and other data
@@ -75,7 +76,7 @@ export class ListModulesComponent implements OnInit {
   remove(id: string) {
     this.groupService.remove(this.path, id);
     this.modalRef.hide();
-    this.removedGroupMessage();
+    //this.removedGroupMessage();
   }
  
   // Populate input form
@@ -91,7 +92,7 @@ export class ListModulesComponent implements OnInit {
   }
 
   // Clear form
-  reset(): void {
+  /*reset(): void {
     this.groupForm.reset();
   }
 
@@ -124,5 +125,6 @@ export class ListModulesComponent implements OnInit {
   decline(): void {
     this.modalRef.hide();
   }
+  */
 
 }
